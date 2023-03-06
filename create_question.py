@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import uic
+import random
 
 ui = uic.loadUiType("matrix_create_question.ui")[0]
 
@@ -66,6 +67,11 @@ class CreateQuestion(QMainWindow, ui):
         print("valid")
         return True
 
+    def auto_generate_vals(self, matrix):
+        for i in matrix:
+            # arbitrary, can be changed
+            i.setText(str(random.randint(0, 9)))
+
     # these methods below will be called when the corresponding buttons are clicked
 
     def check_valid_pressed(self):
@@ -75,8 +81,12 @@ class CreateQuestion(QMainWindow, ui):
             return True
         return False
 
+    # can run this on left_matrix and right_matrix separately (as parameters)
+    # TODO (maybe): add button to generate specifically for left/right.
+    # Otherwise there might be problems when there is only 1 matrix, such as determinant
     def auto_generate_pressed(self):
-        pass
+        self.auto_generate_vals(self.left_matrix_values)
+        self.auto_generate_vals(self.right_matrix_values)
 
     def add_question_pressed(self):
         pass
