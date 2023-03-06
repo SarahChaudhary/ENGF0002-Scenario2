@@ -22,26 +22,26 @@ class CreateQuestion(QMainWindow, ui):
         self.setupUi(appwindow)
 
         # this is the 9 matrix input spaces (QLineEdit) collated into a list [QLineEdit]
-        # self.left_matrix_values = [self.q1,
-        #                            self.q2,
-        #                            self.q3,
-        #                            self.q4,
-        #                            self.q5,
-        #                            self.q6,
-        #                            self.q7,
-        #                            self.q8,
-        #                            self.q9]
+        self.left_matrix_values = [self.q1,
+                                   self.q2,
+                                   self.q3,
+                                   self.q4,
+                                   self.q5,
+                                   self.q6,
+                                   self.q7,
+                                   self.q8,
+                                   self.q9]
 
         # same as above but for the second matrix
-        # self.right_matrix_values = [self.q10,
-        #                             self.q11,
-        #                             self.q12,
-        #                             self.q13,
-        #                             self.q14,
-        #                             self.q15,
-        #                             self.q16,
-        #                             self.q17,
-        #                             self.q18]
+        self.right_matrix_values = [self.q10,
+                                    self.q11,
+                                    self.q12,
+                                    self.q13,
+                                    self.q14,
+                                    self.q15,
+                                    self.q16,
+                                    self.q17,
+                                    self.q18]
 
         # QLine objects that make up the left matrix's brackets
 
@@ -68,7 +68,7 @@ class CreateQuestion(QMainWindow, ui):
         # dictionary to take the string from the dropdown box, and convert it to the string for the operator label
         self.operator_dict = {'Addition': '+',
                               'Subtraction': '-',
-                              'Multiply': 'X',
+                              'Multiply': 'x',
                               'Inverse': '-1',
                               'Determinant': 'Det'}
 
@@ -77,11 +77,20 @@ class CreateQuestion(QMainWindow, ui):
 
         if dropdown_string == 'Inverse':
             self.q_left_matrix.hide()
+            self.q_right_matrix.move(230, 190)
+            self.q_operator_label.move(275, 0)
+
 
         elif dropdown_string == 'Determinant':
             self.q_left_matrix.hide()
-            # need to hide the right matrix
+            self.q_right_matrix.move(230, 190)
+            self.q_operator_label.move(0, 90)
 
         elif dropdown_string == 'Multiply' or dropdown_string == 'Subtraction' or dropdown_string == 'Addition':
+            # x = self.q_right_matrix.x()
+            # y = self.q_right_matrix.y()
+            # print(x, y)
+            self.q_right_matrix.move(350, 190)
+            self.q_operator_label.move(0, 90)
             self.q_left_matrix.show()
             # need to show the left matrix
