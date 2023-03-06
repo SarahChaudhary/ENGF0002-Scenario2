@@ -75,6 +75,7 @@ class CreateQuestion(QMainWindow, ui):
     # these methods below will be called when the corresponding buttons are clicked
 
     def check_valid_pressed(self):
+        # TODO: make sure that only 1 of the matrices are checked when its a binary operator (ben will add this)
         if self.check_matrix_valid(self.left_matrix_values) and self.check_matrix_valid(
             self.right_matrix_values
         ):
