@@ -106,10 +106,10 @@ QComboBox:hover{
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="q_title">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>190</x>
       <y>30</y>
       <width>381</width>
       <height>81</height>
@@ -125,7 +125,7 @@ QComboBox:hover{
      </font>
     </property>
     <property name="text">
-     <string>Sign in</string>
+     <string>Sign In</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -281,7 +281,7 @@ QComboBox:hover{
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="q_repeat_password_2">
+    <widget class="QLineEdit" name="q_repeat_password">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -294,7 +294,7 @@ QComboBox:hover{
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="q_repeat_password">
+    <widget class="QLabel" name="q_repeat_password_label">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -338,6 +338,19 @@ QComboBox:hover{
       <string>Password</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="q_show_password">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>260</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Show</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

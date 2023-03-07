@@ -6,8 +6,8 @@ from signin import Signin
 class App(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setup_create_question()
-        # self.setup_signin()
+        # self.setup_create_question()
+        self.setup_signin()
         self.show()
 
     def setup_create_question(self):
