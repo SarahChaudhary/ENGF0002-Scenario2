@@ -5,7 +5,8 @@ cursor = conn.cursor()
 
 
 def init_db():
-    # TODO: pls format all the sql nicely lol
+    # TODO: make functions to pull all quizzes that are owned by a given id
+    # TODO: give each quiz a code so it can be shared, and make a function to lookup a quiz based off of a code
     # NOTE: no need to insert id's, they will autoincrement
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS Users (id INTEGER NOT NULL UNIQUE, username TEXT NOT NULL, \

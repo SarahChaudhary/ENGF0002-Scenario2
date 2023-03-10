@@ -21,3 +21,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# TODO: add a file for all the different matrix operations. make it a class so it can be imported,
+# TODO: basically wrap the numpy functions but make it return normal arrays and have the parameters being normal arrays
+
+# TODO: (ben) add a page where the user can either make a quiz, do a quiz or enter calculator

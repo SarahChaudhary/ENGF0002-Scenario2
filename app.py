@@ -1,11 +1,14 @@
 from PyQt5.QtWidgets import QMainWindow
 from create_question import CreateQuestion
 from signin import Signin
+import database
 
 
+# TODO: (ben) need to add swapping between page functionality
 class App(QMainWindow):
     def __init__(self):
         super().__init__()
+        database.init_db()
         # self.setup_create_question()
         self.setup_signin()
         self.show()

@@ -90,9 +90,12 @@ class CreateQuestion(QMainWindow, ui):
         self.auto_generate_vals(self.right_matrix_values)
 
     def add_question_pressed(self):
+        # TODO: should check that the question is valid i.e. all fields entered correctly, and then add the question to the database
         pass
 
     def finish_quiz_pressed(self):
+        # TODO: should add the quiz to the database as long as there is a valid question entered
+        # TODO (optional) maybe add date and time to the quiz, both here and ofc in the backend
         pass
 
     def update_pressed(self):
