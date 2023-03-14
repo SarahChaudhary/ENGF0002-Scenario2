@@ -41,6 +41,7 @@ def insert_user(username, password):
     cursor.execute(
         "INSERT INTO Users (username, password) VALUES (?, ?)", (username, password)
     )
+    conn.commit()
 
 
 def insert_quiz(user_id, quiz_name, quiz_type, nr_questions):
@@ -64,6 +65,14 @@ def insert_question(quiz_id, question_number, matrix1_id, matrix2_id, operator):
 def get_quiz_info_by_user_id(user_id):
     cursor.execute("SELECT * FROM Quizzes WHERE user_id = ?", (user_id,))
     return cursor.fetchall()
+
+def is_user_in_db(username):
+    cursor.execute("SELECT * FROM Users WHERE username = ?", (username,))
+    return cursor.fetchone() is not None
+
+def get_pass(username):
+    cursor.execute("SELECT password FROM Users WHERE username = ?", (username,))
+    return cursor.fetchone()[0]
 
 def close_db():
     conn.commit()
