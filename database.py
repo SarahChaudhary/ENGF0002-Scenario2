@@ -5,8 +5,6 @@ cursor = conn.cursor()
 
 
 def init_db():
-    # TODO: make functions to pull all quizzes that are owned by a given id
-    # TODO: give each quiz a code so it can be shared, and make a function to lookup a quiz based off of a code
     # NOTE: no need to insert id's, they will autoincrement
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS Users (id INTEGER NOT NULL UNIQUE, username TEXT NOT NULL, \
@@ -62,6 +60,10 @@ def insert_question(quiz_id, question_number, matrix1_id, matrix2_id, operator):
         (quiz_id, question_number, matrix1_id, matrix2_id, operator),
     )
 
+# functon to return all the info about a quiz, given user id
+def get_quiz_info_by_user_id(user_id):
+    cursor.execute("SELECT * FROM Quizzes WHERE user_id = ?", (user_id,))
+    return cursor.fetchall()
 
 def close_db():
     conn.commit()
