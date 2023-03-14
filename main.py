@@ -26,3 +26,4 @@ if __name__ == '__main__':
 # TODO: basically wrap the numpy functions but make it return normal arrays and have the parameters being normal arrays
 
 # TODO: (ben) add a page where the user can either make a quiz, do a quiz or enter calculator
+# TODO: (ben) need to have another file to hold temp user data like name and id

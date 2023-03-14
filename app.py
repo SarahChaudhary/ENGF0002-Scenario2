@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 from create_question import CreateQuestion
 from signin import Signin
+from calculator import Calculator
 import database
 
 
@@ -10,8 +11,12 @@ class App(QMainWindow):
         super().__init__()
         database.init_db()
         # self.setup_create_question()
-        self.setup_signin()
+        self.setup_calculator()
+        # self.setup_signin()
         self.show()
+
+    def setup_calculator(self):
+        self.calculator = Calculator(self)
 
     def setup_create_question(self):
         self.setup_create_question_screen = CreateQuestion(self)
