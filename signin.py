@@ -82,11 +82,7 @@ class Signin(QMainWindow, ui):
         password1 = self.q_make_password.text()
         password2 = self.q_repeat_password.text()
 
-
-        # TODO add account validation in here -> check username isnt taken, and passwords are matching and strong enough
-        # TODO hash the password too, use hashlib sha256 hash
         if self.validate_signin(username, password1, password2):
-            # TODO add account details to database
             database.insert_user(username, hash(password1))
             print("inserted")
             self.q_create_account.hide()
@@ -106,8 +102,6 @@ class Signin(QMainWindow, ui):
                 print('correct')
             else:
                 print('incorrect')
-        # TODO check that the username exists in the db, and the password matches the username
-
         
         # TODO (ben) ill add an error popup later once the above feature is implemented
 
