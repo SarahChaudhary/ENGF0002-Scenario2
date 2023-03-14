@@ -29,11 +29,7 @@ class Calculator(QMainWindow, ui):
     def __init__(self, appwindow):
         super().__init__()
         self.setupUi(appwindow)
-        self.history_bivariable = True
-        self.bivariable = True
 
-        self.q_single_answer.hide()
-        self.q_history_single_ans.hide()
         self.q_update.clicked.connect(self.update_clicked)
         self.q_show_history.clicked.connect(self.show_history_clicked)
         self.q_clear_history.clicked.connect(self.hide_history_clicked)
@@ -104,6 +100,21 @@ class Calculator(QMainWindow, ui):
                                    self.h26,
                                    self.h27]
 
+        self.initialise_status()
+
+    def initialise_status(self):
+        self.history_bivariable = True
+        self.bivariable = True
+
+        self.q_single_answer.hide()
+        self.q_history_single_ans.hide()
+
+        for i in range(9):
+            self.answer_matrix[i].setReadOnly(True)
+            self.history_matrix_ans[i].setReadOnly(True)
+            self.history_right_matrix[i].setReadOnly(True)
+            self.history_left_matrix[i].setReadOnly(True)
+
     def calculate_clicked(self):
         operation = self.q_operator_label.text()
         self.answers = []
@@ -152,8 +163,6 @@ class Calculator(QMainWindow, ui):
             self.history_matrix_ans[i].setText(str(self.answers[i]))
 
         self.q_history_operator_label.setText(self.q_operator_label.text())
-
-
 
         # update the matrix values
 
