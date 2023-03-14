@@ -58,7 +58,7 @@ QLineEdit{
 	padding: 2px;
     font: bold;
 	font-size: 16px;
-	alignment: centre;
+	text-align: centre;
 
 }
 
@@ -105,7 +105,7 @@ QComboBox:hover{
    <widget class="QPushButton" name="q_calculate">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>530</x>
       <y>620</y>
       <width>111</width>
       <height>41</height>
@@ -907,9 +907,9 @@ QComboBox:hover{
    <widget class="QLabel" name="q_operator_label">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>180</x>
       <y>440</y>
-      <width>101</width>
+      <width>211</width>
       <height>51</height>
      </rect>
     </property>
@@ -931,7 +931,7 @@ QComboBox:hover{
      <string>+</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QWidget" name="q_answer_matrix" native="true">
@@ -1735,9 +1735,9 @@ QComboBox:hover{
    <widget class="QLabel" name="q_history_operator_label">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>330</x>
       <y>120</y>
-      <width>81</width>
+      <width>271</width>
       <height>61</height>
      </rect>
     </property>
@@ -1754,10 +1754,10 @@ QComboBox:hover{
      <string>+</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="q_history_equals_label">
     <property name="geometry">
      <rect>
       <x>760</x>
@@ -1838,6 +1838,19 @@ QComboBox:hover{
     </property>
     <property name="text">
      <string>Update</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="q_clear_matrices">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>620</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear Matrices</string>
     </property>
    </widget>
   </widget>
