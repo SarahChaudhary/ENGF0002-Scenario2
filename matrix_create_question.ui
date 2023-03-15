@@ -677,6 +677,19 @@ QComboBox:hover{
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="q_cancel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>480</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

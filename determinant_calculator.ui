@@ -1853,6 +1853,19 @@ QComboBox:hover{
      <string>Clear Matrices</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="q_back">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>620</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

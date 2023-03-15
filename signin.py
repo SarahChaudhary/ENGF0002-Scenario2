@@ -91,6 +91,7 @@ class Signin(QMainWindow, ui):
 
 
     def signin_button_clicked(self):
+        self.valid = False
         password = self.q_password.text()
         print(password)
         username = self.q_username.text()
@@ -99,9 +100,14 @@ class Signin(QMainWindow, ui):
             print(db_pass)
             print(hash(password))
             if db_pass == str(hash(password)):
+                self.valid = True
                 print('correct')
             else:
+                self.valid = False
                 print('incorrect')
+
+        # for testing purposes
+        self.valid = True
         
         # TODO (ben) ill add an error popup later once the above feature is implemented
 

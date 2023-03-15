@@ -11,7 +11,7 @@ class App(QMainWindow):
         super().__init__()
         database.init_db()
         self.setup_signin()
-        # self.setup_landing_page()
+        # self.setup_create_question()
         self.show()
 
     def setup_signin(self):
@@ -25,22 +25,26 @@ class App(QMainWindow):
         if self.signin_screen.valid:
             print('valid')
             self.setup_landing_page()
+            self.signin_screen.close()
+
 
     def setup_landing_page(self):
         self.landing_page = LandingPage(self)
         self.landing_page.q_signout.clicked.connect(self.setup_signin)
         self.landing_page.q_calculator.clicked.connect(self.setup_calculator)
         self.landing_page.q_practice_quiz.clicked.connect(self.setup_practice_quiz)
-        self.landing_page.q_create_quiz.clicked.connect(self.create_question_screen)
+        self.landing_page.q_create_quiz.clicked.connect(self.setup_create_question)
 
     def setup_practice_quiz(self):
         pass
 
     def setup_calculator(self):
         self.calculator = Calculator(self)
+        self.calculator.q_back.clicked.connect(self.setup_landing_page)
 
     def setup_create_question(self):
-        self.create_question_screen = CreateQuestion(self)
+        self.create_question = CreateQuestion(self)
+        self.create_question.q_cancel.clicked.connect(self.setup_landing_page)
 
     # def setup_doing_quiz(self):
     #     self.setup_doing_quiz_screen = DoingQuiz(Self)
