@@ -202,11 +202,6 @@ QComboBox:hover{
     </property>
     <item>
      <property name="text">
-      <string>Inversion</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
       <string>Addition</string>
      </property>
     </item>
@@ -217,12 +212,17 @@ QComboBox:hover{
     </item>
     <item>
      <property name="text">
+      <string>Multiplication</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>Determinant</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Multiplication</string>
+      <string>Inversion</string>
      </property>
     </item>
     <item>

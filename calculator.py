@@ -125,6 +125,7 @@ class Calculator(QMainWindow, ui):
             self.left_matrix[i].setText("")
             self.right_matrix[i].setText("")
             self.answer_matrix[i].setText("")
+        self.q_single_answer.setText("")
 
     def calculate_clicked(self):
         self.update_clicked()
@@ -165,6 +166,7 @@ class Calculator(QMainWindow, ui):
                 # call inverse function
 
         self.update_matrices()
+        # self.clear_matrices()
 
     def update_matrices(self):
         single = True if len(self.answers) == 1 else False
@@ -235,10 +237,15 @@ class Calculator(QMainWindow, ui):
         if dropdown_string == "Inversion":
             self.bivariable = False
             self.q_left_matrix.hide()
+            self.q_single_answer.hide()
+            self.q_answer_matrix.show()
 
         elif dropdown_string == "Determinant":
             self.bivariable = False
             self.q_left_matrix.hide()
+            self.q_answer_matrix.hide()
+            self.q_single_answer.show()
+
 
         elif (
                 dropdown_string == "Multiplication"
@@ -247,3 +254,5 @@ class Calculator(QMainWindow, ui):
         ):
             self.q_left_matrix.show()
             self.bivariable = True
+            self.q_answer_matrix.show()
+            self.q_single_answer.hide()
