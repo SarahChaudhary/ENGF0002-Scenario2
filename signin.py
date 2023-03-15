@@ -1,9 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QLineEdit
 from PyQt5 import uic
 import database
-import random # TODO: remove from this file once matirx.py is imported
-
-random.seed(42)
+import hashlib
 
 ui = uic.loadUiType("signin.ui")[0]
 
@@ -23,7 +21,10 @@ q_signin -> QWidget {
     q_dont_have_account -> QPushButton
 }
 '''
-
+# for some reason current_user is not being updated, so use list instead (kinda dirty but works)
+# current_user = ""
+# current = []
+current = ["test1"] #TODO: HARDCODED, remove once validation is turned on
 
 class Signin(QMainWindow, ui):
     def __init__(self, appwindow):
@@ -68,11 +69,11 @@ class Signin(QMainWindow, ui):
             return False
         if len(p1) < 3: # TODO: change this to 8 once testing is done (or never lol, they won't know)
             return False
-        if p1 == p1.casefold() or p1 == p1.upper():
-            return False
-        # check if it contains a special character (!, @, #, $, %, *, &, ?)
-        if not any(char in p1 for char in ['!', '@', '#', '$', '%', '*', '&', '?']):
-            return False
+        # if p1 == p1.casefold() or p1 == p1.upper():
+        #     return False
+        # # check if it contains a special character (!, @, #, $, %, *, &, ?)
+        # if not any(char in p1 for char in ['!', '@', '#', '$', '%', '*', '&', '?']):
+        #     return False
 
         return True
     
@@ -83,7 +84,8 @@ class Signin(QMainWindow, ui):
         password2 = self.q_repeat_password.text()
 
         if self.validate_signin(username, password1, password2):
-            database.insert_user(username, hash(password1))
+            hashed_password = hashlib.sha256(password1.encode()).hexdigest()
+            database.insert_user(username, hashed_password)
             print("inserted")
             self.q_create_account.hide()
             self.q_signin.show()
@@ -99,8 +101,11 @@ class Signin(QMainWindow, ui):
             db_pass = database.get_pass(username)
             print(db_pass)
             print(hash(password))
-            if db_pass == str(hash(password)):
+            hashed_password = hashlib.sha256(password.encode()).hexdigest()
+            if db_pass == hashed_password:
                 self.valid = True
+                current.append(username)
+                # current_user = username
                 print('correct')
             else:
                 self.valid = False
@@ -109,5 +114,8 @@ class Signin(QMainWindow, ui):
         # for testing purposes
         self.valid = True
         
+    def get_username(self):
+        return self.q_username.text()
+
         # TODO (ben) ill add an error popup later once the above feature is implemented
 

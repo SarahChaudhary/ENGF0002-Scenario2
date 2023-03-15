@@ -12,7 +12,7 @@ def init_db():
     )
 
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS Quizzes (id INTEGER NOT NULL UNIQUE, user_id INTEGER NOT NULL UNIQUE, \
+        "CREATE TABLE IF NOT EXISTS Quizzes (id INTEGER NOT NULL UNIQUE, user_id INTEGER NOT NULL, \
             quiz_name TEXT NOT NULL, quiz_type TEXT NOT NULL, nr_questions INTEGER NOT NULL, \
                 PRIMARY KEY(id AUTOINCREMENT), FOREIGN KEY (user_id) REFERENCES Users (id));"
     )
@@ -49,21 +49,23 @@ def insert_quiz(user_id, quiz_name, quiz_type, nr_questions):
         "INSERT INTO Quizzes (user_id, quiz_name, quiz_type, nr_questions) VALUES (?, ?, ?, ?)",
         (user_id, quiz_name, quiz_type, nr_questions),
     )
+    conn.commit()
 
 
 def insert_matrix(size, vals):
     cursor.execute("INSERT INTO Matrices (size, vals) VALUES (?, ?)", (size, vals))
-
+    conn.commit()
 
 def insert_question(quiz_id, question_number, matrix1_id, matrix2_id, operator):
     cursor.execute(
         "INSERT INTO Questions (quiz_id, question_number, matrix1_id, matrix2_id, operator) VALUES (?, ?, ?, ?, ?)",
         (quiz_id, question_number, matrix1_id, matrix2_id, operator),
     )
+    conn.commit()
 
 # functon to return all the info about a quiz, given user id
-def get_quiz_info_by_user_id(user_id):
-    cursor.execute("SELECT * FROM Quizzes WHERE user_id = ?", (user_id,))
+def get_quiz_info_by_user_id(usr_id):
+    cursor.execute("SELECT * FROM Quizzes WHERE user_id = ?", (usr_id,))
     return cursor.fetchall()
 
 def is_user_in_db(username):
@@ -73,6 +75,11 @@ def is_user_in_db(username):
 def get_pass(username):
     cursor.execute("SELECT password FROM Users WHERE username = ?", (username,))
     return cursor.fetchone()[0]
+
+def get_user_id(username):
+    cursor.execute("SELECT id FROM Users WHERE username = ?", (username,))
+    return cursor.fetchone()
+
 
 def close_db():
     conn.commit()
