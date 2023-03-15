@@ -95,6 +95,8 @@ class Signin(QMainWindow, ui):
 
 
     def signin_button_clicked(self):
+        print('hi from signin')
+        self.valid = False
         password = self.q_password.text()
         print(password)
         username = self.q_username.text()
@@ -104,10 +106,14 @@ class Signin(QMainWindow, ui):
             print(hash(password))
             if db_pass == str(hash(password)):
                 print('correct')
+                self.valid = True
             else:
                 print('incorrect')
-        # TODO check that the username exists in the db, and the password matches the username
+                self.valid = False
+        # for testing purposes (to bypass login):
+        self.valid = True
+        # TODO: check that the username exists in the db, and the password matches the username
 
         
-        # TODO (ben) ill add an error popup later once the above feature is implemented
+        # TODO: (ben) ill add an error popup later once the above feature is implemented
 
