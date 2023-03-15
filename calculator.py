@@ -1,5 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import uic
+import numpy as np
+from matrix import matrix_subtraction, matrix_addition, matrix_determinant, matrix_dot_product ,matrix_dot_product, matrix_inverse, matrix_multiplication
 
 ui = uic.loadUiType('determinant_calculator.ui')[0]
 
@@ -137,24 +139,29 @@ class Calculator(QMainWindow, ui):
             self.right_values = [v.text() for v in self.right_matrix]
 
             if operation == "+":
-                pass
+                self.answer_matrix = matrix_addition(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+            
                 # call addition function
             elif operation == 'x':
-                pass
+                self.answer_matrix = matrix_multiplication(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+            
                 # call multiplication function
             elif operation == '-':
-                pass
+                self.answer_matrix = matrix_subtraction(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+            
                 # call subtraction function
 
         else:
             self.values = [v.text() for v in self.right_matrix]
 
             if operation == 'Det':
-                pass
+                self.answer_matrix = matrix_determinant(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+            
                 # call determinant and have it return to the answer list
 
             elif operation == 'Inverse':
-                pass
+                self.answer_matrix = matrix_inverse(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+                
                 # call inverse function
 
         self.update_matrices()
