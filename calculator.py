@@ -135,32 +135,32 @@ class Calculator(QMainWindow, ui):
         self.answers = [1]
 
         if self.bivariable:
-            self.left_values = [v.text() for v in self.left_matrix]
-            self.right_values = [v.text() for v in self.right_matrix]
+            self.left_values = [float(v.text()) for v in self.left_matrix]
+            self.right_values = [float(v.text()) for v in self.right_matrix]
 
             if operation == "+":
-                self.answer_matrix = matrix_addition(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+                self.answers = matrix_addition(np.array(self.left_values.copy()).reshape(3,3), np.array(self.right_values.copy()).reshape(3,3))
             
                 # call addition function
             elif operation == 'x':
-                self.answer_matrix = matrix_multiplication(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+                self.answers = matrix_multiplication(np.array(self.left_values.copy()).reshape(3,3), np.array(self.right_values.copy()).reshape(3,3))
             
                 # call multiplication function
             elif operation == '-':
-                self.answer_matrix = matrix_subtraction(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+                self.answers = matrix_subtraction(np.array(self.left_values.copy()).reshape(3,3), np.array(self.right_values.copy()).reshape(3,3))
             
                 # call subtraction function
 
         else:
-            self.values = [v.text() for v in self.right_matrix]
+            self.values = [float(v.text()) for v in self.right_matrix]
 
             if operation == 'Det':
-                self.answer_matrix = matrix_determinant(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+                self.answers = matrix_determinant(np.array(self.values.copy()).reshape(3,3))
             
                 # call determinant and have it return to the answer list
 
             elif operation == 'Inverse':
-                self.answer_matrix = matrix_inverse(np.array(self.left_matrix.copy()).reshape(3,3), np.array(self.right_matrix.copy()).reshape(3,3))
+                self.answers = matrix_inverse(np.array(self.values.copy()).reshape(3,3))
                 
                 # call inverse function
 

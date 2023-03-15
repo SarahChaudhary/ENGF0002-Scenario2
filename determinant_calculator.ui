@@ -907,9 +907,9 @@ QComboBox:hover{
    <widget class="QLabel" name="q_operator_label">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>170</x>
       <y>440</y>
-      <width>211</width>
+      <width>221</width>
       <height>51</height>
      </rect>
     </property>
@@ -1866,6 +1866,30 @@ QComboBox:hover{
      <string>Back</string>
     </property>
    </widget>
+   <zorder>q_history_operator_label</zorder>
+   <zorder>q_operator_label</zorder>
+   <zorder>q_calculate</zorder>
+   <zorder>q_equals</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label</zorder>
+   <zorder>q_operator_dropdown</zorder>
+   <zorder>q_clear_history</zorder>
+   <zorder>q_show_history</zorder>
+   <zorder>q_left_matrix</zorder>
+   <zorder>q_history_left_matrix</zorder>
+   <zorder>q_left_matrix_2</zorder>
+   <zorder>q_answer_matrix</zorder>
+   <zorder>q_single_answer</zorder>
+   <zorder>q_history_right_matrix</zorder>
+   <zorder>q_history_matrix_ans</zorder>
+   <zorder>line_19</zorder>
+   <zorder>line_20</zorder>
+   <zorder>q_history_equals_label</zorder>
+   <zorder>q_history_single_ans</zorder>
+   <zorder>label_3</zorder>
+   <zorder>q_update</zorder>
+   <zorder>q_clear_matrices</zorder>
+   <zorder>q_back</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
