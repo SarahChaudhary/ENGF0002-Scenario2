@@ -24,9 +24,11 @@ class LandingPage(QMainWindow, ui):
 
         self.q_load_quiz.clicked.connect(self.load_quiz_clicked)
         self.q_delete_quiz.clicked.connect(self.delete_quiz_clicked)
-        
+
+        '''
         self.create_table()
-        self.q_table.show()
+        '''
+
         # signin = Signin()
         # self.username = signin.get_username()
         # print(self.username)
@@ -38,11 +40,9 @@ class LandingPage(QMainWindow, ui):
     def delete_quiz_clicked(self):
         pass
     
-  
-
+    '''  
     # function to create table. table will contain quiz id, quiz name, quiz type, number of questions and creator id
     def create_table(self):
-        self.q_table = QTableWidget()
         quiz_data = self.load_quiz_data()
         self.q_table.setColumnCount(len(quiz_data[0]))
         self.q_table.setRowCount(len(quiz_data))
@@ -60,6 +60,7 @@ class LandingPage(QMainWindow, ui):
 
     def load_quiz_data(self):
         user_id = int(database.get_user_id(current[0])[0])
+        # user_id = 1
 
         # functions to insert if you want to test
         # database.insert_quiz(user_id, "test", "practice1", 69)
@@ -73,7 +74,7 @@ class LandingPage(QMainWindow, ui):
             for j in range(len(data[0])):
                 print(i, j, data[i][j])
                 table.setItem(i, j, QTableWidgetItem(str(data[i][j])))
-
+    '''
 
 
 

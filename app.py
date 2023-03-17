@@ -3,6 +3,7 @@ from create_question import CreateQuestion
 from signin import Signin
 from calculator import Calculator
 from landing_page import LandingPage
+from doing_quiz import DoingQuiz
 import database
 
 
@@ -34,9 +35,11 @@ class App(QMainWindow):
         self.landing_page.q_calculator.clicked.connect(self.setup_calculator)
         self.landing_page.q_practice_quiz.clicked.connect(self.setup_practice_quiz)
         self.landing_page.q_create_quiz.clicked.connect(self.setup_create_question)
+        self.landing_page.close()
 
     def setup_practice_quiz(self):
-        pass
+        self.doing_quiz = DoingQuiz(self)
+        self.doing_quiz.q_leave.clicked.connect(self.setup_landing_page)
 
     def setup_calculator(self):
         self.calculator = Calculator(self)

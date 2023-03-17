@@ -9,4 +9,37 @@ class DoingQuiz(QMainWindow, ui):
         super().__init__()
         self.setupUi(appwindow)
 
-    # TODO (ben) once the quizzes in the database have been written, i can make a page for this. need the db to be done first
+        self.q_single_answer.hide()
+        self.load_quiz()
+
+        self.q_next_question.clicked.connect(self.next_question_clicked)
+        self.q_previous_question.clicked.connect(self.previous_question_clicked)
+        self.q_check_correct.clicked.connect(self.check_question_clicked)
+
+
+    def load_quiz(self):
+        # need to load the quiz name
+        quiz_name = "quiz name"
+        self.q_quiz_name.setText(quiz_name)
+
+        # need to load the question number
+        question_number = "1"
+        self.q_question_number.setText(question_number)
+
+        # need to load the username
+        username = "test"
+        self.q_by_username.setText('by ' + username)
+
+
+    def next_question_clicked(self):
+        pass
+
+    def previous_question_clicked(self):
+        pass
+
+    def check_question_clicked(self):
+        pass
+
+
+
+
