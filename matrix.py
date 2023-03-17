@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import string
 class Matrix:
     # values is 2d list
     def __init__(self, size, values):
@@ -11,8 +12,13 @@ class Matrix:
 
 def correct_num_values(mat):
     for i in mat:
-        if None in i:
-            raise ValueError("expected more input values")
+        if i is None:
+            raise ValueError("missing input error")
+        try:
+            float(i)
+            int(i)
+        except ValueError:
+            raise ValueError("NaN error")
         
 def matrix_addition(matrix1, matrix2):
     correct_num_values(matrix1)
