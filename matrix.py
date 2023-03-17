@@ -46,7 +46,7 @@ def matrix_determinant(matrix):
 
 def matrix_inverse(matrix):
     correct_num_values(matrix)
-    if matrix_determinant(matrix) // 1 == 0:
+    if matrix_determinant(matrix) == 0:
         raise ValueError("matrix is not invertible")
     return np.linalg.inv(matrix).ravel().tolist()
 
