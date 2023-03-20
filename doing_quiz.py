@@ -82,7 +82,8 @@ class DoingQuiz(QMainWindow, ui):
         pass
 
     def format_matrices(self):
-
+        # for ben to do
+        pass
 
 
 
