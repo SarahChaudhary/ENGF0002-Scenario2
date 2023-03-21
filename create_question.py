@@ -1,7 +1,9 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import uic
 import random
-from database.py import *
+# from database.py import *
+import database
+from signin import current
 ui = uic.loadUiType("matrix_create_question.ui")[0]
 
 """
@@ -102,9 +104,9 @@ class CreateQuestion(QMainWindow, ui):
                     acceptable = False
 
         if acceptable:
-            self.user_id = get_user_id(current[0])
-            self.quiz_info = get_quiz_info_by_user_id(self.user_id) #assumes only one quiz
-            insert_question(0, len(self.quiz_info) + self.added , self.left_matrix_values, self.right_matrix_values, self.dropdown_string)
+            self.user_id = database.get_user_id(current[0])
+            self.quiz_info = database.get_quiz_info_by_user_id(self.user_id) #assumes only one quiz
+            database.insert_question(0, len(self.quiz_info) + self.added , self.left_matrix_values, self.right_matrix_values, self.dropdown_string)
             self.added += 1
         else:
             raise ValueError("invalid operation or values")
@@ -112,7 +114,7 @@ class CreateQuestion(QMainWindow, ui):
 
     def finish_quiz_pressed(self):
         # TODO: should add the quiz to the database as long as there is a valid question entered
-        insert_quiz(self.user_id, "test", "type", len(self.quiz_info) + self.added)
+        database.insert_quiz(self.user_id, "test", "type", len(self.quiz_info) + self.added)
         # TODO (optional) maybe add date and time to the quiz, both here and ofc in the backend
         pass
 
