@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import uic
 import random
-
+from database.py import *
 ui = uic.loadUiType("matrix_create_question.ui")[0]
 
 """
@@ -21,6 +21,7 @@ class CreateQuestion(QMainWindow, ui):
     def __init__(self, appwindow):
         super().__init__()
         self.setupUi(appwindow)
+        self.added = 0
 
         # this is the 9 matrix input spaces (QLineEdit) collated into a list [QLineEdit]
         self.left_matrix_values = [
@@ -91,10 +92,27 @@ class CreateQuestion(QMainWindow, ui):
 
     def add_question_pressed(self):
         # TODO: should check that the question is valid i.e. all fields entered correctly, and then add the question to the database
+        acceptable = True
+        for value in self.left_matrix_values:
+                if value == None or not isinstance(value, (int, float)):
+                    acceptable = False
+        if self.dropdown_string != "Determinant" and self.dropdown_string != "Inverse": # assumes left matrix will always be filled
+            for value in self.right_matrix_values:
+                if value == None or not isinstance(value, (int, float)):
+                    acceptable = False
+
+        if acceptable:
+            self.user_id = get_user_id(current[0])
+            self.quiz_info = get_quiz_info_by_user_id(self.user_id) #assumes only one quiz
+            insert_question(0, len(self.quiz_info) + self.added , self.left_matrix_values, self.right_matrix_values, self.dropdown_string)
+            self.added += 1
+        else:
+            raise ValueError("invalid operation or values")
         pass
 
     def finish_quiz_pressed(self):
         # TODO: should add the quiz to the database as long as there is a valid question entered
+        insert_quiz(self.user_id, "test", "type", len(self.quiz_info) + self.added)
         # TODO (optional) maybe add date and time to the quiz, both here and ofc in the backend
         pass
 
@@ -108,23 +126,23 @@ class CreateQuestion(QMainWindow, ui):
             "Determinant": "Det",
         }
 
-        dropdown_string = self.q_operator_dropdown.currentText()
-        self.q_operator_label.setText(self.operator_dict[dropdown_string])
+        self.dropdown_string = self.q_operator_dropdown.currentText()
+        self.q_operator_label.setText(self.operator_dict[self.dropdown_string])
 
-        if dropdown_string == "Inverse":
+        if self.dropdown_string == "Inverse":
             self.q_left_matrix.hide()
             self.q_right_matrix.move(230, 190)
             self.q_operator_label.move(275, 0)
 
-        elif dropdown_string == "Determinant":
+        elif self.dropdown_string == "Determinant":
             self.q_left_matrix.hide()
             self.q_right_matrix.move(230, 190)
             self.q_operator_label.move(0, 90)
 
         elif (
-            dropdown_string == "Multiply"
-            or dropdown_string == "Subtraction"
-            or dropdown_string == "Addition"
+            self.dropdown_string == "Multiply"
+            or self.dropdown_string == "Subtraction"
+            or self.dropdown_string == "Addition"
         ):
             # x = self.q_right_matrix.x()
             # y = self.q_right_matrix.y()

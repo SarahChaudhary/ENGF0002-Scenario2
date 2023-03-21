@@ -56,6 +56,10 @@ def insert_matrix(size, vals):
     cursor.execute("INSERT INTO Matrices (size, vals) VALUES (?, ?)", (size, vals))
     conn.commit()
 
+def get_questions(user_id, quiz_id):
+    cursor.execute("SELECT * FROM Questions WHERE user_id = ? AND WHERE quiz_name = ?", (user_id, quiz_id))
+    return cursor.fetchall()
+
 def insert_question(quiz_id, question_number, matrix1_id, matrix2_id, operator):
     cursor.execute(
         "INSERT INTO Questions (quiz_id, question_number, matrix1_id, matrix2_id, operator) VALUES (?, ?, ?, ?, ?)",
@@ -71,6 +75,7 @@ def get_quiz_info_by_user_id(usr_id):
 def is_user_in_db(username):
     cursor.execute("SELECT * FROM Users WHERE username = ?", (username,))
     return cursor.fetchone() is not None
+
 
 def get_pass(username):
     cursor.execute("SELECT password FROM Users WHERE username = ?", (username,))
