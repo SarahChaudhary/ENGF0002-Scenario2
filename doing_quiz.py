@@ -80,7 +80,7 @@ class DoingQuiz(QMainWindow, ui):
         
         # Get the quiz and question information from the database
         quiz_id = 1 # Replace with the actual quiz ID
-        question_number = 1 # Replace with the actual question number
+        question_number = 1 # placeholder
         db = sqlite3.connect('database.db')
         cursor = db.cursor()
         cursor.execute("SELECT name FROM quizzes WHERE id=?", (quiz_id,))
