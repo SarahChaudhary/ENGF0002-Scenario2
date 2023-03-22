@@ -91,7 +91,8 @@ class DoingQuiz(QMainWindow, ui):
         username = cursor.fetchone()[0]
         db.close()
 
-        # Update the labels and text fields on the UI
+        # Update on the UI
+        
         self.q_quiz_name.setText(quiz_name)
         self.q_question_number.setText(str(question_number))
         self.q_question_text.setText(question_text)
