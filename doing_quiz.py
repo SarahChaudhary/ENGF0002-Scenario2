@@ -43,12 +43,12 @@ class DoingQuiz(QMainWindow, ui):
 
     def load_quiz(self):
         # load the quiz from database into here, load the questions as well
-        # connect to the database
+        
         conn = sqlite3.connect('mydatabase.db')
         c = conn.cursor()
 
         # get the quiz name
-        quiz_id = 1  # replace with the actual quiz ID
+        quiz_id = 1  # do we want to randomly pick a quiz with rand.int for the id number or idk
         c.execute("SELECT name FROM quizzes WHERE id=?", (quiz_id,))
         quiz_name = c.fetchone()[0]
 
@@ -56,37 +56,30 @@ class DoingQuiz(QMainWindow, ui):
         c.execute("SELECT id, question FROM questions WHERE quiz_id=?", (quiz_id,))
         questions = c.fetchall()
 
-        # close the database connection
         conn.close()
 
-        # store the quiz name and questions
+
+        
         self.quiz_name = quiz_name
         self.questions = questions
         pass
 
     def load_question(self):
-        # need to load the quiz name into quiz_name variable
-        #quiz_name = "quiz name"
-        #self.q_quiz_name.setText(quiz_name)
-
-        # need to load the question number into question_number variable
-        #question_number = "1"
-        #self.q_question_number.setText(question_number)
-
-        # need to load the username into username variable
-        #username = "test"
-        #self.q_by_username.setText('by ' + username)
-        #self.format_matrices()
         
-        # Get the quiz and question information from the database
-        quiz_id = 1 # Replace with the actual quiz ID
+        quiz_id = 1 #i still need to iterate this to get all the questions
         question_number = 1 # placeholder
         db = sqlite3.connect('database.db')
         cursor = db.cursor()
+        
+        # need to load the quiz name into quiz_name variable
         cursor.execute("SELECT name FROM quizzes WHERE id=?", (quiz_id,))
         quiz_name = cursor.fetchone()[0]
+        
+        # need to load the question number into question_number variable
         cursor.execute("SELECT question FROM questions WHERE quiz_id=? AND number=?", (quiz_id, question_number))
         question_text = cursor.fetchone()[0]
+        
+        # need to load the username into username variable
         cursor.execute("SELECT username FROM users WHERE id=?", (self.user_id,))
         username = cursor.fetchone()[0]
         db.close()
